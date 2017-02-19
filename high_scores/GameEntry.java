@@ -1,6 +1,6 @@
-/** GameEntry encapsulates a completed game by a player. It holds a
- * player and his score (which may or may not be a high score), along
- * with getter methods.
+/** GameEntry encapsulates a completed game by a player. It holds the
+ * player's name and his score (which may or may not be a high score),
+ * along with getter methods and a toString method.
  */
 
 public class GameEntry
