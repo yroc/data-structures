@@ -5,3 +5,6 @@ This jar file `sourcecode.jar` is from the text <cite>Data Structures and Algori
 
 ## High Scores
 A Java application that stores a list of video game high scores (source: <cite>Data Structures and Algorithms in Java</cite>, p. 104).
+
+## Sorting an Array
+A Java application that sorts an array (i.e., takes as argument an unordered array of elements and rearranges them into nondecreasing order). This application uses the insertion-sort algorithm.
