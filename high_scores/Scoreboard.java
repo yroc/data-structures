@@ -15,10 +15,14 @@
 public class Scoreboard
 {
     // Instance variables
-    private GameEntry[] board;      // An array to hold GameEntry objects
-    private int numEntries = 0;     // The actual number of entries
+    private GameEntry[] board;      // Declare a variable to reference an array
+                                    // of GameEntry objects
+    private int numEntries = 0;     // The actual number of entries on the board
 
     // Constructor
+    /**
+     * Construct a Scoreboard object with the given capacity
+     */
     public Scoreboard(int capacity)
     {
         this.board = new GameEntry[capacity];
@@ -26,8 +30,7 @@ public class Scoreboard
 
     // Methods
 
-    /** Adds a GameEntry to this Scoreboard if and only if it is high
-     * score.
+    /** Adds a GameEntry to this Scoreboard if and only if it is a high score.
      */
     public void add(GameEntry e)
     {
@@ -74,7 +77,7 @@ public class Scoreboard
             {
                 this.board[i] = this.board[i + 1];
             }
-        this.board[numEntries - 1] == null;
+        this.board[numEntries - 1] = null;
         this.numEntries--;
 
         return hand;
