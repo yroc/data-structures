@@ -76,6 +76,7 @@ public class Scoreboard
         while (i < this.numEntries - 1)
             {
                 this.board[i] = this.board[i + 1];
+                i++;
             }
         this.board[numEntries - 1] = null;
         this.numEntries--;
