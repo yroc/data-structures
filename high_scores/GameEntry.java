@@ -11,10 +11,10 @@ public class GameEntry
     private String name;	// the player's name
 
     // Constructor
-    public GameEntry(int score, String name)
+    public GameEntry(String name, int score)
     {
-	this.score = score;
 	this.name = name;
+	this.score = score;
     }
 
     // Methods
