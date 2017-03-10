@@ -11,3 +11,9 @@ This jar file `sourcecode.jar` is from the text <cite>Data Structures and Algori
 
 ### Singly Linked List
 * sll
+
+### Circularly Linked List
+* cll
+
+### Doubly Linked List
+* dll
