@@ -5,6 +5,6 @@ This jar file `sourcecode.jar` is from the text <cite>Data Structures and Algori
 
 ## Projects Outline
 *Using Arrays
- *High Scores
- *Insertion Sort
- *Array Demo
+    *High Scores
+    *Insertion Sort
+    *Array Demo
