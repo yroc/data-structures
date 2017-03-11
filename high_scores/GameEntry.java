@@ -17,7 +17,7 @@ public class GameEntry
 	this.score = score;
     }
 
-    // Methods
+    // Access methods
     public int getScore()
     {
 	return this.score;
@@ -30,7 +30,7 @@ public class GameEntry
 
     public String toString()
     {
-	return "(" + this.name + ", " + this.score + ")";
+	return "(" + this.getName() + ", " + this.getScore() + ")";
 	
     }
 }
