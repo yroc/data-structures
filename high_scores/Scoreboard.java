@@ -17,7 +17,7 @@ public class Scoreboard
     // Instance variables
     private GameEntry[] board;      // Declare a variable to reference an array
                                     // of GameEntry objects
-    private int numEntries = 0;     // The actual number of entries on the board
+    private int numEntries;     // The actual number of entries on the board
 
     // Constructor
     /**
@@ -25,6 +25,7 @@ public class Scoreboard
      */
     public Scoreboard(int capacity)
     {
+        this.numEntries = 0;
         this.board = new GameEntry[capacity];
     }
 
