@@ -17,21 +17,25 @@ public class Scoreboard
     // Instance variables
     private GameEntry[] board;      // Declare a variable to reference an array
                                     // of GameEntry objects
-    private int numEntries;     // The actual number of entries on the board
+    private int numEntries;         // The actual number of entries on the board
+    private int indexOfLast;        // Index of the lowest GameEntry (or -1 if
+                                    // board is empty)
 
     // Constructor
     /**
-     * Constructs a Scoreboard object with the given capacity
+     * Constructs an empty Scoreboard with the given capacity
      */
     public Scoreboard(int capacity)
     {
         this.numEntries = 0;
         this.board = new GameEntry[capacity];
+        this.indexOfLast = this.numEntries - 1;
     }
 
     // Update Methods
 
-    /** Adds a GameEntry to this Scoreboard if and only if it is a high score.
+    /** Adds the given GameEntry to this Scoreboard if and only if it qualifies
+     * as a high score.
      */
     public void add(GameEntry e)
     {
@@ -60,7 +64,7 @@ public class Scoreboard
             }
     }
 
-    /** Removes a GameEntry from this Scoreboard. */
+    /** Removes the GameEntry from this Scoreboard at the given index. */
     public GameEntry remove(int i) throws IndexOutOfBoundsException
     {
         if (i < 0 || i >= this.numEntries)
