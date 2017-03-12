@@ -41,7 +41,7 @@ public class Scoreboard
     {
         // is the new entry e really a high score?
         if (this.numEntries < this.board.length ||
-            e.getScore() > this.board[this.numEntries - 1].getScore())
+            e.getScore() > this.board[this.indexOfLast].getScore())
             {
                 if (this.numEntries < this.board.length)
                     {
@@ -51,10 +51,10 @@ public class Scoreboard
                     }
                 // shift any lower scores rightward to make room for
                 // the new entry
-                int j = this.numEntries - 1; // j represents the position
-                                        // that the new GameEntry will
-                                        // reside (yet to be
-                                        // determined).
+                int j = this.indexOfLast; // j represents the position
+                                // that the new GameEntry will
+                                // reside (yet to be
+                                // determined).
                 while (j > 0 && this.board[j - 1].getScore() < e.getScore())
                     {
                         this.board[j] = this.board[j - 1];
@@ -77,12 +77,12 @@ public class Scoreboard
                                         // returned. This is necessary
                                         // because its reference is
                                         // going to be wiped out
-        while (i < this.numEntries - 1)
+        while (i < this.indexOfLast)
             {
                 this.board[i] = this.board[i + 1];
                 i++;
             }
-        this.board[numEntries - 1] = null;
+        this.board[this.indexOfLast] = null;
         this.numEntries--;
 
         return hand;
