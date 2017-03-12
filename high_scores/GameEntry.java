@@ -1,7 +1,6 @@
 /** 
- * GameEntry encapsulates a completed game by a player. It holds the
- * player's name and his score (which may or may not be a high score),
- * along with getter methods and a toString method.
+ * GameEntry encapsulates a single game play&mdash;a player&rsquo;s name and
+ * his/her score.
  */
 
 public class GameEntry
@@ -10,7 +9,12 @@ public class GameEntry
     private int score;		// the player's score
     private String name;	// the player's name
 
-    // Constructor
+    /**
+     * Constructs a GameEntry with the given name and score
+     *
+     * @param name The player&rsquo;s name.
+     * @param score The player&rsquo;s score.
+     */
     public GameEntry(String name, int score)
     {
 	this.name = name;
@@ -18,16 +22,26 @@ public class GameEntry
     }
 
     // Access methods
+    /**
+     * Returns the score of this GameEntry.
+     */
     public int getScore()
     {
 	return this.score;
     }
+
+    /**
+     * Returns the (player) name of this GameEntry.
+     */
 
     public String getName()
     {
 	return this.name;
     }
 
+    /**
+     * Returns a string representation of this GameEntry.
+     */
     public String toString()
     {
 	return "(" + this.getName() + ", " + this.getScore() + ")";
