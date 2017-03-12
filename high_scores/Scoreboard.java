@@ -34,8 +34,9 @@ public class Scoreboard
 
     // Update Methods
 
-    /** Adds the given GameEntry to this Scoreboard if and only if it qualifies
-     * as a high score.
+    /**
+     * Adds the given GameEntry to this Scoreboard if the GameEntry qualifies
+     * as a high score. Otherwise does nothing.
      */
     public void add(GameEntry e)
     {
@@ -64,7 +65,10 @@ public class Scoreboard
             }
     }
 
-    /** Removes the GameEntry from this Scoreboard at the given index. */
+    /**
+     * Removes the GameEntry from this Scoreboard at the given index. Throws
+     * an exception if no GameEntry exists at the given index.
+     */
     public GameEntry remove(int i) throws IndexOutOfBoundsException
     {
         if (i < 0 || i >= this.numEntries)
@@ -88,7 +92,9 @@ public class Scoreboard
         return hand;
     }
 
-    /** Returns a string representation of this Scoreboard. */
+    /**
+     * Returns a string representation of this Scoreboard.
+     */
     public String toString()
     {
         StringBuilder sb = new StringBuilder("[");
