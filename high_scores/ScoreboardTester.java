@@ -1,3 +1,10 @@
+`ScoreboardTester.java` represents a client that uses `GameEntry` and `Scoreboard`.
+/**
+ * A client class that instantiates a Scoreboard and several GameEntrys, then
+ * tests the Scoreboard's add and remove methods by attempting to add and remove
+ * the GameEntrys to the Scoreboard.
+ */
+
 public class ScoreboardTester
 {
     public static void main(String[] args)
