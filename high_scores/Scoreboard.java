@@ -51,16 +51,13 @@ public class Scoreboard
                     }
                 // shift any lower scores rightward to make room for
                 // the new entry
-                int j = this.indexOfLast; // j represents the position
-                                // that the new GameEntry will
-                                // reside (yet to be
-                                // determined).
-                while (j > 0 && this.board[j - 1].getScore() < e.getScore())
+                int newPos = this.indexOfLast; // eventual position of GameEntry
+                while (newPos > 0 && this.board[newPos - 1].getScore() < e.getScore())
                     {
-                        this.board[j] = this.board[j - 1];
-                        j--;
+                        this.board[newPos] = this.board[newPos - 1];
+                        newPos--;
                     }
-                this.board[j] = e;
+                this.board[newPos] = e;
             }
     }
 
