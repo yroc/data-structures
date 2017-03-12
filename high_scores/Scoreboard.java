@@ -46,9 +46,8 @@ public class Scoreboard
             {
                 if (this.numEntries < this.board.length)
                     {
-                        this.numEntries++; // no score drops from the
-                                // board, so the overall number increases
-                                // by one
+                        this.numEntries++;
+                        this.indexOfLast++;
                     }
                 // shift any lower scores rightward to make room for
                 // the new entry
@@ -66,11 +65,12 @@ public class Scoreboard
     }
 
     /**
-     * Removes the GameEntry from this Scoreboard at the given index. Throws
-     * an exception if no GameEntry exists at the given index.
+     * Removes the GameEntry from this Scoreboard at the given place (starting
+     * at 1). Throws an exception if no GameEntry exists at the given place.
      */
-    public GameEntry remove(int i) throws IndexOutOfBoundsException
+    public GameEntry remove(int place) throws IndexOutOfBoundsException
     {
+        int i = place - 1;  // convert place to array index (zero-based)
         if (i < 0 || i >= this.numEntries)
             {
                 throw new IndexOutOfBoundsException("Invalid index: " + i);
