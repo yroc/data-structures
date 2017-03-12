@@ -1,6 +1,6 @@
 /**
- * Scoreboard encapsulates a scoreboard that lists the game's high
- * scores (top scores) in descending order (highest to lowest).
+ * Scoreboard encapsulates a scoreboard that lists a game's high scores in
+ * descending order (highest to lowest).
 
  * A scoreboard is limited to a certain number of high scores that can
  * be saved; once that limit is reached, a new score only qualifies
@@ -21,7 +21,7 @@ public class Scoreboard
 
     // Constructor
     /**
-     * Construct a Scoreboard object with the given capacity
+     * Constructs a Scoreboard object with the given capacity
      */
     public Scoreboard(int capacity)
     {
@@ -29,22 +29,21 @@ public class Scoreboard
         this.board = new GameEntry[capacity];
     }
 
-    // Methods
+    // Update Methods
 
     /** Adds a GameEntry to this Scoreboard if and only if it is a high score.
      */
     public void add(GameEntry e)
     {
-        int newScore = e.getScore();
         // is the new entry e really a high score?
         if (this.numEntries < this.board.length ||
-            newScore > this.board[this.numEntries - 1].getScore())
+            e.getScore() > this.board[this.numEntries - 1].getScore())
             {
                 if (this.numEntries < this.board.length)
                     {
                         this.numEntries++; // no score drops from the
-                                      // board, so the overall number
-                                      // increases by one
+                                // board, so the overall number increases
+                                // by one
                     }
                 // shift any lower scores rightward to make room for
                 // the new entry
@@ -52,7 +51,7 @@ public class Scoreboard
                                         // that the new GameEntry will
                                         // reside (yet to be
                                         // determined).
-                while (j > 0 && this.board[j - 1].getScore() < newScore)
+                while (j > 0 && this.board[j - 1].getScore() < e.getScore())
                     {
                         this.board[j] = this.board[j - 1];
                         j--;
