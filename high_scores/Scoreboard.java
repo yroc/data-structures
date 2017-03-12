@@ -23,7 +23,9 @@ public class Scoreboard
 
     // Constructor
     /**
-     * Constructs an empty Scoreboard with the given capacity
+     * Constructs an empty Scoreboard with the given capacity.
+     *
+     * @param capacity The capacity (number of spots) of this Scoreboard.
      */
     public Scoreboard(int capacity)
     {
@@ -33,10 +35,11 @@ public class Scoreboard
     }
 
     // Update Methods
-
     /**
      * Adds the given GameEntry to this Scoreboard if the GameEntry qualifies
      * as a high score. Otherwise does nothing.
+     *
+     * @param e The given GameEntry.
      */
     public void add(GameEntry e)
     {
@@ -62,8 +65,13 @@ public class Scoreboard
     }
 
     /**
-     * Removes the GameEntry from this Scoreboard at the given place (starting
-     * at 1). Throws an exception if no GameEntry exists at the given place.
+     * Removes and returns the GameEntry from this Scoreboard at the given place
+     * (where &ldquo;place&rdquo; is greater than or equal to 1&mdash;1st place,
+     * 2nd place, etc., that is, place is not zero-indexed).
+     *
+     * @param place The place to remove and return.
+     * @return The GameEntry in the given place.
+     * @throws IndexOutOfBoundsException if GameEntry exists at the given place.
      */
     public GameEntry remove(int place) throws IndexOutOfBoundsException
     {
@@ -72,12 +80,7 @@ public class Scoreboard
             {
                 throw new IndexOutOfBoundsException("Invalid index: " + i);
             }
-        GameEntry hand = this.board[i]; // "taking" a copy of the
-                                        // GameEntry to be removed so
-                                        // that it can be
-                                        // returned. This is necessary
-                                        // because its reference is
-                                        // going to be wiped out
+        GameEntry hand = this.board[i];
         while (i < this.indexOfLast)
             {
                 this.board[i] = this.board[i + 1];
@@ -91,6 +94,8 @@ public class Scoreboard
 
     /**
      * Returns a string representation of this Scoreboard.
+     *
+     * @return The string representation of this Scoreboard.
      */
     public String toString()
     {
