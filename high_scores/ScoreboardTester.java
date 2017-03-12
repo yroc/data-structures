@@ -12,20 +12,20 @@ public class ScoreboardTester
             highscores.add(gE);
             System.out.println(" Scoreboard: " + highscores);
         }
-        System.out.println("Removing score at index " + 3);
-        highscores.remove(3);
+        System.out.println("Removing score at place " + 4);
+        highscores.remove(4);
         System.out.println(highscores);
-        System.out.println("Removing score at index " + 0);
-        highscores.remove(0);
-        System.out.println(highscores);
-        System.out.println("Removing score at index " + 1);
+        System.out.println("Removing score at place " + 1);
         highscores.remove(1);
         System.out.println(highscores);
-        System.out.println("Removing score at index " + 1);
-        highscores.remove(1);
+        System.out.println("Removing score at place " + 2);
+        highscores.remove(2);
         System.out.println(highscores);
-        System.out.println("Removing score at index " + 0);
-        highscores.remove(0);
+        System.out.println("Removing score at place " + 2);
+        highscores.remove(2);
+        System.out.println(highscores);
+        System.out.println("Removing score at place " + 1);
+        highscores.remove(1);
         System.out.println(highscores);
     }
 }
