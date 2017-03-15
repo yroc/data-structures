@@ -1,21 +1,35 @@
+/**
+ * A complete implementation of a singly linked list in Java.
+ */
+
 public class SinglyLinkedList<E>
 {
     // ------------ nested Node class ------------
-    private static class Node<E>
+    
+    /**
+     * Private Node class to hold each data element and link to the next data
+     * element private static class Node<E> { // Attributes private E element;
+     * reference to the element stored at this node private Node<E> next;
+     * reference to the subsequent node in the list
+     */
+    private class Node
     {
-        // Attributes
-        private E element;      // reference to the element stored at this node
-        private Node<E> next;   // reference to the subsequent node in the list
-
-        // Constructor
+        /**
+         * Constructs a Node containing the given data element and the given
+         * reference to the next node
+         *
+         * @param element The given data element to be held in the SLL
+         * @param next Reference to the next Node in the list
+         */
         public Node(E element, Node<E> next)
         {
             this.element = element;
             this.next = next;
         }
 
-        // Methods
-        /** Returns this node's element */
+        /**
+         * Returns this node's element
+         */
         public E getElement()
         {
             return this.element;
@@ -35,7 +49,7 @@ public class SinglyLinkedList<E>
     }
     // ------------ end of nested Node class ------------
 
-    // Instance variables (of SLL class)
+// Instance variables (of SLL class)
     private Node<E> head;       // reference to the initial node in the list
     private Node<E> tail;       // reference to the last node in the list
     private int size;           // the number of nodes in the list
