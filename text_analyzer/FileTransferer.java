@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 import java.util.Scanner;
 import java.io.File;
 
@@ -6,14 +5,26 @@ public class FileTransferer
 {
     public static void main(String[] args) throws Exception
     {
-        // Create a new linked list to hold the words in the file
-        LinkedList<String> filewords = new LinkedList<String>();
+        // Create a new String array to hold the words in the file
+        String[] filewords;
+        int numWords = 0;
 
         // Scanner to read the words in the file
         Scanner sc = new Scanner(new File("WisdomForRoad.txt"));
-
-        // Put the words into the linked list
+        /*
+        // Count the number of words in the file
         while(sc.hasNext())
+            {
+                numWords++;
+            }
+        System.out.println(numWords);
+
+
+        // Instantiate the array
+        filewords = new String[numWords];
+        
+        // Put the words into the linked list
+        for (int i = 0; i < numWords; i++)
             {
                 String s = sc.next();
 
@@ -23,10 +34,10 @@ public class FileTransferer
                         int len = s.length();
                         s = s.substring(0, len - 1);
                     }
-                filewords.add(s.toLowerCase());
+                filewords[i] = s.toLowerCase();
             }
 
         // Print the linked list (just to verify the code works)
-        System.out.println(filewords.toString());
+        System.out.println(filewords.toString());*/
     }
 }
