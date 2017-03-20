@@ -44,4 +44,22 @@ public class BinarySearchTree extends LinkedBinaryTree
     {
         
     }
+
+    /**
+     * Returns true if the given string occurs in this binary search tree, else
+     * returns false
+     */
+    public boolean search(String element)
+    {
+        
+    }
+
+    /**
+     * Inserts the given string into this binary search tree if and only if it
+     * does not already occur
+     */
+    public void insert(String element)
+    {
+        
+    }
 }
