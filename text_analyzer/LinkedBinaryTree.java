@@ -3,13 +3,6 @@
  */
 public class LinkedBinaryTree extends AbstractBinaryTree
 {
-
-  /** Factory function to create a new node storing element e. */
-  protected Node<E> createNode(E e, Node<E> parent,
-                                  Node<E> left, Node<E> right) {
-    return new Node<E>(e, parent, left, right);
-  }
-
   // LinkedBinaryTree instance variables
   /** The root of the binary tree */
   protected Node<E> root = null;     // root of the tree
