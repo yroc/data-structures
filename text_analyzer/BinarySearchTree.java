@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * A class to store all distinct words from a given text file
  */
@@ -17,7 +19,7 @@ public class BinarySearchTree extends LinkedBinaryTree
      */
     public void readIn(String fileName)
     {
-        
+        Scanner sc = new Scanner(new File("WisdomForRoad.txt"));
     }
 
     /**
