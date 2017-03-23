@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * A class to store all distinct words from a text file
@@ -77,15 +79,15 @@ public class BinarySearchTree
      */
     public boolean isRoot(BTNode node)
     {
-        return p == this.root();
+        return node == this.root();
     }
 
     /** Returns true if the given node has one or more children, false
      * otherwise.
      */
-    boolean isInternal(BTNode node)
+    /*boolean isInternal(BTNode node)
     {
-    }
+    }*/
 
     /**
      * Returns true if the given node does not have any children.
@@ -118,8 +120,8 @@ public class BinarySearchTree
      */
     public BTNode addRoot(String word)
     {
-        this.root = BTNode(word, null, null, null);
-        size = 1;
+        this.root = new BTNode(word, null, null, null);
+        this.size = 1;
         return root;
     }
 
@@ -142,7 +144,7 @@ public class BinarySearchTree
      */
     public BTNode addRight(BTNode node, String word)
     {
-        BTNode parent = (BTNode) p;
+        BTNode parent = node;
         BTNode child = new BTNode(word, parent, null, null);
         parent.setRight(child);
         this.size++;
@@ -168,7 +170,7 @@ public class BinarySearchTree
     /**
      * Returns the height of the subtree rooted at the given node
      */
-    public int height(BTNode node)
+    /*    public int height(BTNode node)
     {
         int h = 0;              // base case if the given node is external
         for (BTNode c : children(node))
@@ -176,7 +178,7 @@ public class BinarySearchTree
                 h = Math.max(h, 1 + height(c));
             }
         return h;
-    }
+        }*/
     
     /**
      * Performs the following operations:
@@ -190,7 +192,7 @@ public class BinarySearchTree
      * BTNode is incremented
      */
 
-    public void readIn(String fileName)
+    public void readIn(String fileName) throws FileNotFoundException
     {
         // Create a Scanner to read the words in the file
         Scanner sc = new Scanner(new File("WisdomForRoad.txt"));
@@ -207,22 +209,22 @@ public class BinarySearchTree
 
                 if (this.isEmpty())
                     {
-                        this.addRoot();
+                        this.addRoot(s);
                     }
                 else 
                     {
                         BTNode tmpNode = this.search(this.root, s.toLowerCase());
-                        // The search resulted in a match
+                        // The search resulted in a match (the node does exist
+                        // in this BST; just increase the count)
                         if (tmpNode.element().equals(s))
                             {
-                                // The node does exist in the BST; just increase
-                                // the count
                                 tmpNode.increaseWordCounter();
                             }
-                        // The search did not result in a match
+                        // The search did not result in a match. Insert the word
+                        // into the BST
                         else
                             {
-                                
+                                this.insert(this.root, s.toLowerCase());
                             }
                     }
             }
@@ -231,10 +233,10 @@ public class BinarySearchTree
     /**
      * Finds and returns the length of the longest search path in T
      */
-    public int maxSearchPath()
+    /*public int maxSearchPath()
     {
         
-    }
+    }*/
 
     /**
      * Prints all the distinct words found in &lt;fileName&gt;, in sorted order
@@ -255,8 +257,8 @@ public class BinarySearchTree
 
     /**
      * Returns a reference to the node containing the given word if that word
-     * occurs in this BST. Otherwise returns a leaf node whose word does not
-     * match the given word.
+     * occurs in this BST. Otherwise returns a leaf node, which is the last node
+     * that was checked (and which doesn't match).
      */
     public BTNode search(BTNode node, String word)
     {
@@ -282,11 +284,36 @@ public class BinarySearchTree
      * Inserts the given word into this binary search tree if and only if it
      * does not already occur
      */
-    public void insert(String word)
+    public void insert(BTNode node, String word)
     {
-        if (this.isEmpty())
+        // If the given word is less than current node's word
+        if (word.compareTo(node.element()) < 0)
             {
-                this.addRoot(word);
+                if (this.left(node) == null)
+                    {
+                        BTNode tmpNode = this.addLeft(node, word);
+                        tmpNode.increaseWordCounter();
+                        return;
+                    }
+                // recur on left subtree
+                else
+                    {
+                        insert(this.left(node), word);
+                    }
+            }
+        else                    // we know that word > node.element()
+            {
+                if (this.right(node) == null)
+                    {
+                        BTNode tmpNode = this.addRight(node, word);
+                        tmpNode.increaseWordCounter();
+                        return;
+                    }
+                // recur on right subtree
+                else
+                    {
+                        insert(this.right(node), word);
+                    }
             }
     }
 }
