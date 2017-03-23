@@ -1,11 +1,183 @@
 import java.util.Scanner;
 
 /**
- * A class to store all distinct words from a given text file
+ * A class to store all distinct words from a text file
  */
 
-public class BinarySearchTree extends LinkedBinaryTree
+public class BinarySearchTree
 {
+    // Instance variables
+    private BTNode root; // reference to the root of this BST
+    private int size;    // number of nodes in this BST
+
+    // Constructor
+    /**
+     * Constructs an empty BST
+     */
+    public BinarySearchTree()
+    {
+        this.root = null;
+        this.size = 0;
+    }
+
+    // Accessor methods
+    /**
+     * Returns the size of this BST
+     */
+    public int size()
+    {
+        return this.size;
+    }
+
+    /**
+     * Returns the reference to the root of this BST (or null if this BST is empty)
+     */
+    public BTNode root()
+    {
+        return this.root;
+    }
+
+    /**
+     * Returns the reference to the parent of the given node (or null if the
+     * given node is the root)
+     */
+    public BTNode parent(BTNode node)
+    {
+        return node.getParent();
+    }
+
+    /**
+     * Returns the reference to the left child of the given node (or null if no
+     * child exists)
+     */
+    public BTNode left(BTNode node)
+    {
+        return node.getLeft();
+    }
+
+    /**
+     * Returns the reference to the right child of the given node (or null if no
+     * child exists)
+     */
+    public BTNode right(BTNode node)
+    {
+        return node.getRight();
+    }
+    // Query methods
+    /**
+     * Tests whether this BST is empty
+     */
+    public boolean isEmpty()
+    {
+        return this.size() == 0;
+    }
+    
+    /**
+     * Returns true if the given node represents the root of the tree
+     */
+    public boolean isRoot(BTNode node)
+    {
+        return p == this.root();
+    }
+
+    /** Returns true if the given node has one or more children, false
+     * otherwise.
+     */
+    boolean isInternal(BTNode node)
+    {
+    }
+
+    /**
+     * Returns true if the given node does not have any children.
+     */
+    boolean isExternal(BTNode node)
+    {
+        return this.numChildren(node) == 0;
+    }
+
+    /**
+     * Returns the number of children of the given node
+     */
+    public int numChildren(BTNode node)
+    {
+        int count = 0;
+        if (this.left(node) != null)
+            {
+                count++;
+            }
+        if (this.right(node) != null)
+            {
+                count++;
+            }
+        return count;
+    }
+    
+    // Update methods
+    /**
+     * Places the given word at the root of this tree and returns its reference
+     */
+    public BTNode addRoot(String word)
+    {
+        this.root = BTNode(word, null, null, null);
+        size = 1;
+        return root;
+    }
+
+    /**
+     * Creates a new left child (which stores the given word) to the given
+     * node. Returns the reference to the new child
+     */
+    public BTNode addLeft(BTNode node, String word)
+    {
+        BTNode parent = node;
+        BTNode child = new BTNode(word, parent, null, null);
+        parent.setLeft(child);
+        this.size++;
+        return child;
+    }
+
+    /**
+     * Creates a new right child (which stores the given word) to the given
+     * node. Returns the reference to the new child
+     */
+    public BTNode addRight(BTNode node, String word)
+    {
+        BTNode parent = (BTNode) p;
+        BTNode child = new BTNode(word, parent, null, null);
+        parent.setRight(child);
+        this.size++;
+        return child;
+    }
+
+    // support for computing depth of nodes and height of (sub)trees
+    /**
+     * Returns the number of levels separating the given node from the root
+     */
+    public int depth(BTNode node)
+    {
+        if (isRoot(node))
+            {
+                return 0;
+            }
+        else
+            {
+                return 1 + depth(parent(node));
+            }
+    }
+
+    /**
+     * Returns the height of the subtree rooted at the given node
+     */
+    public int height(BTNode node)
+    {
+        int h = 0;              // base case if the given node is external
+        for (BTNode c : children(node))
+            {
+                h = Math.max(h, 1 + height(c));
+            }
+        return h;
+    }
+    
     /**
      * Performs the following operations:
      *
@@ -17,9 +189,43 @@ public class BinarySearchTree extends LinkedBinaryTree
      * 3) For each duplicate word, the wordCounter of the corresponding
      * BTNode is incremented
      */
+
     public void readIn(String fileName)
     {
+        // Create a Scanner to read the words in the file
         Scanner sc = new Scanner(new File("WisdomForRoad.txt"));
+        
+        while(sc.hasNext())
+            {
+                String s = sc.next();
+                // If the current word ends in punctuation
+                if (s.endsWith(".") || s.endsWith(",") || s.endsWith(";"))
+                    {
+                        int len = s.length();
+                        s = s.substring(0, len - 1);
+                    }
+
+                if (this.isEmpty())
+                    {
+                        this.addRoot();
+                    }
+                else 
+                    {
+                        BTNode tmpNode = this.search(this.root, s.toLowerCase());
+                        // The search resulted in a match
+                        if (tmpNode.element().equals(s))
+                            {
+                                // The node does exist in the BST; just increase
+                                // the count
+                                tmpNode.increaseWordCounter();
+                            }
+                        // The search did not result in a match
+                        else
+                            {
+                                
+                            }
+                    }
+            }
     }
 
     /**
@@ -42,26 +248,45 @@ public class BinarySearchTree extends LinkedBinaryTree
      * Finds and prints the ten most common words from &lt;fileName&gt;,
      * together with their respective wordCounter-s
      */
-    public void prentTenMostCommonWords()
+    public void printTenMostCommonWords()
     {
         
     }
 
     /**
-     * Returns true if the given string occurs in this binary search tree, else
-     * returns false
+     * Returns a reference to the node containing the given word if that word
+     * occurs in this BST. Otherwise returns a leaf node whose word does not
+     * match the given word.
      */
-    public boolean search(String element)
+    public BTNode search(BTNode node, String word)
     {
-        
+        if (word.compareTo(node.element()) == 0)
+            {
+                return node;    // search successful
+            }
+        else if (this.isExternal(node))
+            {
+                return node;    // search unsuccessful
+            }
+        else if (word.compareTo(node.element()) < 0)
+            {
+                return search(this.left(node), word); // recur on left subtree
+            }
+        else                    // we know that word > node.element()
+            {
+                return search(this.right(node), word); // recur on right subtree
+            }
     }
 
     /**
-     * Inserts the given string into this binary search tree if and only if it
+     * Inserts the given word into this binary search tree if and only if it
      * does not already occur
      */
-    public void insert(String element)
+    public void insert(String word)
     {
-        
+        if (this.isEmpty())
+            {
+                this.addRoot(word);
+            }
     }
 }
