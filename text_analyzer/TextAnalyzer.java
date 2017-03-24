@@ -12,6 +12,6 @@ public class TextAnalyzer
         BST.readIn("WisdomForRoad.txt");
         //System.out.println(BST.maxSearchPath());
         BST.printWordsSorted();
-        //BST.printTenMostCommonWords();
+        BST.printTenMostCommonWords();
     }
 }

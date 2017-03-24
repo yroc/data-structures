@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Arrays;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -24,7 +25,7 @@ public class BinarySearchTree
 
     // Accessor methods
     /**
-     * Returns the size of this BST
+     * Returns the size (i.e., number of nodes) of this BST
      */
     public int size()
     {
@@ -244,9 +245,11 @@ public class BinarySearchTree
     public void printWordsSorted()
     {
         printWordsSortedRec(this.root);
-        System.out.println("");
+        System.out.println(""); // empty line so that terminal prompt is not on
+                                // same line
     }
 
+    // Auxillary method for printWordsSorted()
     private void printWordsSortedRec(BTNode node)
     {
         if (node == null)
@@ -264,7 +267,33 @@ public class BinarySearchTree
      */
     public void printTenMostCommonWords()
     {
+        int[] counts = new int[this.size];
+        int i = 0;              // array index
+        printTenMostCommonWordsRec(this.root, counts, i);
+    }
+
+    // Auxillary method for printTenMostCommonWords()
+    private void printTenMostCommonWordsRec(BTNode node, int[] counts, int i)
+    {
+        if (node == null)
+            {
+                return;
+            }
+        printTenMostCommonWordsRec(node.getLeft(), counts, i);
+        counts[i] = node.getWordCounter();
+        i++;
+        printTenMostCommonWordsRec(node.getRight(), counts, i);
         
+        Arrays.sort(counts);
+        int cutoff = counts[counts.length - 10];
+
+        printTenMostCommonWordsRec(node.getLeft(), counts, i);
+        if (node.getWordCounter() >= cutoff)
+            {
+                System.out.print("(" + node.element() + ", " + node.getWordCounter() + ")");
+                System.out.println("");
+            }
+        printTenMostCommonWordsRec(node.getRight(), counts, i);
     }
 
     /**
