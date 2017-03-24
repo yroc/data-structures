@@ -209,14 +209,14 @@ public class BinarySearchTree
 
                 if (this.isEmpty())
                     {
-                        this.addRoot(s);
+                        this.addRoot(s.toLowerCase());
                     }
                 else 
                     {
                         BTNode tmpNode = this.search(this.root, s.toLowerCase());
                         // The search resulted in a match (the node does exist
                         // in this BST; just increase the count)
-                        if (tmpNode.element().equals(s))
+                        if (tmpNode.element().equals(s.toLowerCase()))
                             {
                                 tmpNode.increaseWordCounter();
                             }
