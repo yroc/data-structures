@@ -132,7 +132,7 @@ public class BinarySearchTree
     public BTNode addLeft(BTNode node, String word)
     {
         BTNode parent = node;
-        BTNode child = new BTNode(word, parent, null, null);
+        BTNode child = new BTNode(word, null, null, parent);
         parent.setLeft(child);
         this.size++;
         return child;
@@ -145,7 +145,7 @@ public class BinarySearchTree
     public BTNode addRight(BTNode node, String word)
     {
         BTNode parent = node;
-        BTNode child = new BTNode(word, parent, null, null);
+        BTNode child = new BTNode(word, null, null, parent);
         parent.setRight(child);
         this.size++;
         return child;
@@ -262,27 +262,33 @@ public class BinarySearchTree
      */
     public BTNode search(BTNode node, String word)
     {
-        if (word.compareTo(node.element()) == 0)
+        // Case one: The given word occurs in this BST
+        // Case two: We've reached an external node; no more nodes to search
+        // Case three: We need to search to the left, but the left reference is null
+        // Case four: We need to search to the right, but the right reference is null
+        // Note: In cases two, three, and four, the given word does not in this BST
+        if ( (word.compareTo(node.element()) == 0) ||
+             (this.isExternal(node)) ||
+             (word.compareTo(node.element()) < 0 && this.left(node) == null) ||
+             (word.compareTo(node.element()) > 0 && this.right(node) == null) )
             {
-                return node;    // search successful
+                return node;
             }
-        else if (this.isExternal(node))
-            {
-                return node;    // search unsuccessful
-            }
-        else if (word.compareTo(node.element()) < 0)
+        // We need to search to the left, and there exists a left node to search
+        else if (word.compareTo(node.element()) < 0 && this.left(node) != null)
             {
                 return search(this.left(node), word); // recur on left subtree
             }
-        else                    // we know that word > node.element()
+        // We need to search to the right, and there exists a right node to search
+        else
             {
                 return search(this.right(node), word); // recur on right subtree
             }
     }
 
     /**
-     * Inserts the given word into this binary search tree if and only if it
-     * does not already occur
+     * Inserts the given word into this BST if and only if the word does not
+     * already occur in the BST
      */
     public void insert(BTNode node, String word)
     {
