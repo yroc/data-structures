@@ -243,7 +243,19 @@ public class BinarySearchTree
      */
     public void printWordsSorted()
     {
-        
+        printWordsSortedRec(this.root);
+        System.out.println("");
+    }
+
+    private void printWordsSortedRec(BTNode node)
+    {
+        if (node == null)
+            {
+                return;
+            }
+        printWordsSortedRec(node.getLeft());
+        System.out.print(node.element() + " ");
+        printWordsSortedRec(node.getRight());
     }
 
     /**
