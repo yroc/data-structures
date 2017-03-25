@@ -7,10 +7,11 @@ public class BTNode
 {
     // Attributes
     private String word;                // A word in the file
-    private int wordCounter;            // Number of occurrences of this word in
-                                        // the file
-    private BTNode left, right, parent; // This node's parent, and left and
-                                        // right children
+    private int wordCounter;            // Number of occurrences of this word
+    private BTNode parent;              // This node's parent
+    private BTNode left;                // This node's left child
+    private BTNode right;               // This node's right child
+
     // Constructor
     /**
      * Constructs a new BTNode that stores the specified word
@@ -32,7 +33,6 @@ public class BTNode
     {
        return this.word; 
     }
-
     /**
      * Returns the number of occurrences of this word
      */
@@ -40,7 +40,6 @@ public class BTNode
     {
         return this.wordCounter;
     }
-
     /**
      * Increments the counter of this word
      */
@@ -48,7 +47,6 @@ public class BTNode
     {
         this.wordCounter++;
     }
-
     /**
      * Returns a reference to this node's left subtree
      */
@@ -56,7 +54,6 @@ public class BTNode
     {
         return this.left;
     }
-
     /**
      * Sets this node's left subtree to the given node
      */
@@ -64,7 +61,6 @@ public class BTNode
     {
         this.left = v;
     }
-
     /**
      * Returns a reference to this node's right subtree
      */
@@ -72,7 +68,6 @@ public class BTNode
     {
         return this.right;
     }
-
     /**
      * Sets this node's right subtree to the given node
      */
@@ -80,7 +75,6 @@ public class BTNode
     {
         this.right = v;
     }
-
     /**
      * Returns a reference to this node's parent
      */
@@ -88,7 +82,6 @@ public class BTNode
     {
         return this.parent;
     }
-
     /**
      * Sets this node's parent node to the given node
      */

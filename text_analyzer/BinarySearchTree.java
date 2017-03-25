@@ -7,7 +7,7 @@ import java.util.HashMap;
  * A class to store all distinct words from a text file
  */
 
-public class BinarySearchTree
+public class BinarySearchTree extends LinkedBinaryTree
 {
     // Instance variables
     private BTNode root; // reference to the root of this BST
@@ -27,11 +27,10 @@ public class BinarySearchTree
     /**
      * Returns the size (i.e., number of nodes) of this BST
      */
-    public int size()
-    {
-        return this.size;
-    }
-
+    //public int size()
+    //{
+    //  return this.size;
+    //}
     /**
      * Returns the reference to the root of this BST (or null if this BST is empty)
      */
@@ -39,7 +38,6 @@ public class BinarySearchTree
     {
         return this.root;
     }
-
     /**
      * Returns the reference to the parent of the given node (or null if the
      * given node is the root)
@@ -48,7 +46,6 @@ public class BinarySearchTree
     {
         return node.getParent();
     }
-
     /**
      * Returns the reference to the left child of the given node (or null if no
      * child exists)
@@ -57,7 +54,6 @@ public class BinarySearchTree
     {
         return node.getLeft();
     }
-
     /**
      * Returns the reference to the right child of the given node (or null if no
      * child exists)
@@ -66,6 +62,7 @@ public class BinarySearchTree
     {
         return node.getRight();
     }
+
     // Query methods
     /**
      * Tests whether this BST is empty
@@ -74,7 +71,6 @@ public class BinarySearchTree
     {
         return this.size() == 0;
     }
-    
     /**
      * Returns true if the given node represents the root of the tree
      */
@@ -82,14 +78,12 @@ public class BinarySearchTree
     {
         return node == this.root();
     }
-
     /** Returns true if the given node has one or more children, false
      * otherwise.
      */
     /*boolean isInternal(BTNode node)
     {
     }*/
-
     /**
      * Returns true if the given node does not have any children.
      */
@@ -97,7 +91,6 @@ public class BinarySearchTree
     {
         return this.numChildren(node) == 0;
     }
-
     /**
      * Returns the number of children of the given node
      */
@@ -114,7 +107,7 @@ public class BinarySearchTree
             }
         return count;
     }
-    
+
     // Update methods
     /**
      * Places the given word at the root of this tree and returns its reference
@@ -125,7 +118,6 @@ public class BinarySearchTree
         this.size = 1;
         return root;
     }
-
     /**
      * Creates a new left child (which stores the given word) to the given
      * node. Returns the reference to the new child
@@ -138,7 +130,6 @@ public class BinarySearchTree
         this.size++;
         return child;
     }
-
     /**
      * Creates a new right child (which stores the given word) to the given
      * node. Returns the reference to the new child
