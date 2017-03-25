@@ -3,7 +3,7 @@
  * together with its occurrence-counter.
  */
 
-public class BTNode implements Position
+public class BTNode
 {
     // Attributes
     private String word;                // A word in the file
@@ -15,13 +15,13 @@ public class BTNode implements Position
     /**
      * Constructs a new BTNode that stores the specified word
      */
-    public BTNode(String s, BTNode u, BTNode v, BTNode w)
+    public BTNode(String s, BTNode left, BTNode right, BTNode parent)
     {
         this.wordCounter = 0;
         this.word = s;
-        this.left = u;
-        this.right = v;
-        this.parent = w;
+        this.left = left;
+        this.right = right;
+        this.parent = parent;
     }
 
     // Methods

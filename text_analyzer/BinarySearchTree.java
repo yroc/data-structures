@@ -1,8 +1,8 @@
 import java.util.Scanner;
-import java.util.Arrays;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import java.util.HashMap;
 /**
  * A class to store all distinct words from a text file
  */
@@ -244,21 +244,21 @@ public class BinarySearchTree
      */
     public void printWordsSorted()
     {
-        printWordsSortedRec(this.root);
+        printWordsSortedRecur(this.root);
         System.out.println(""); // empty line so that terminal prompt is not on
                                 // same line
     }
 
     // Auxillary method for printWordsSorted()
-    private void printWordsSortedRec(BTNode node)
+    private void printWordsSortedRecur(BTNode node)
     {
         if (node == null)
             {
                 return;
             }
-        printWordsSortedRec(node.getLeft());
+        printWordsSortedRecur(node.getLeft());
         System.out.print(node.element() + " ");
-        printWordsSortedRec(node.getRight());
+        printWordsSortedRecur(node.getRight());
     }
 
     /**
@@ -267,33 +267,28 @@ public class BinarySearchTree
      */
     public void printTenMostCommonWords()
     {
-        int[] counts = new int[this.size];
-        int i = 0;              // array index
-        printTenMostCommonWordsRec(this.root, counts, i);
+        HashMap<Integer, String> wordCounts = new HashMap<Integer, String>();
+        printTenMostCommonWordsRecur(this.root, wordCounts);
     }
 
     // Auxillary method for printTenMostCommonWords()
-    private void printTenMostCommonWordsRec(BTNode node, int[] counts, int i)
+    private void printTenMostCommonWordsRecur(BTNode node, HashMap<Integer, String> wordCounts)
     {
         if (node == null)
             {
                 return;
             }
-        printTenMostCommonWordsRec(node.getLeft(), counts, i);
-        counts[i] = node.getWordCounter();
-        i++;
-        printTenMostCommonWordsRec(node.getRight(), counts, i);
-        
-        Arrays.sort(counts);
-        int cutoff = counts[counts.length - 10];
+        printTenMostCommonWordsRecur(node.getLeft(), wordCounts);
 
-        printTenMostCommonWordsRec(node.getLeft(), counts, i);
-        if (node.getWordCounter() >= cutoff)
+        wordCounts.put(node.getWordCounter(), node.element());
+        System.out.println(wordCounts.toString());
+        printTenMostCommonWordsRecur(node.getRight(), wordCounts);
+
+        /*if (node.getWordCounter() >= cutoff)
             {
                 System.out.print("(" + node.element() + ", " + node.getWordCounter() + ")");
                 System.out.println("");
-            }
-        printTenMostCommonWordsRec(node.getRight(), counts, i);
+                }*/
     }
 
     /**

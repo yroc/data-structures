@@ -3,3 +3,6 @@
 
 # Package files
 *.jar
+
+# PDF
+*.pdf
